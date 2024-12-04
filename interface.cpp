@@ -1,3 +1,4 @@
+//interface.cpp
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <fstream>
@@ -5,8 +6,6 @@
 #include "server.h"
 
 namespace po = boost::program_options;
-
-
 
 void interface::get_args_of_comline(int argc, char* argv[])
 {
@@ -40,39 +39,36 @@ void interface::get_args_of_comline(int argc, char* argv[])
     std::string path_to_log = vm["log"].as<std::string>();
     std::string port_str = vm["port"].as<std::string>();
 
-    logtxt sansara(path_to_log);
+    logtxt logger(path_to_log);
 
     try {
         std::ifstream file_of_base(path_to_base);
         if (!file_of_base) {
-            throw criticalerr("Ошибка: Файл базы данных не найден по указанному пути: " + path_to_base);
+            throw criticalerr("CRIT ERROR - Файл базы данных не найден по указанному пути: " + path_to_base);
         }
 
         int port = 0;
         port = std::stoi(port_str);
         if (port < 1024 || port > 65535) {
-            throw criticalerr("НЕКОРРЕКТНЫЙ ПОРТ. КРИТИЧЕСКАЯ ОШИБКА");
+            throw criticalerr("CRIT ERROR - Некорректный порт");
         }
 
         std::cout << "Путь до базы данных: " << path_to_base << std::endl;
         std::cout << "Путь до лог-файла: " << path_to_log << std::endl;
         std::cout << "Порт: " << port << std::endl;
 
-        
-
         try {
             std::ifstream file(path_to_base);
             if (!file.is_open()) {
-                throw criticalerr("CRIT ERR - Не открывается файл БД");
+                throw criticalerr("CRIT ERROR - Не открывается файл БД");
             }
 
             std::map<std::string, std::string> logins;
             std::string line;
-
             while (std::getline(file, line)) {
                 size_t pos = line.find(':');
                 if (pos == std::string::npos) {
-                    throw noncriticalerr("Неверный формат строки: " + line);
+                    throw noncriticalerr("NONCRIT ERROR - Неверный формат строки: " + line);
                 }
                 std::string login = line.substr(0, pos);
                 std::string password = line.substr(pos + 1);
@@ -81,39 +77,25 @@ void interface::get_args_of_comline(int argc, char* argv[])
 
             data_base = logins;
             std::cout << "Логины и пароли: " << std::endl;
-
             for (const auto& pair : logins) {
                 std::cout << pair.first << " : " << pair.second << std::endl;
             }
 
-            //return data_base;
         } catch (const criticalerr& e) {
             std::cerr << e.what() << std::endl;
-            sansara.writeerr(e.what());
+            logger.writeerr(e.what());
             exit(1);
         } catch (const noncriticalerr& e) {
             std::cerr << e.what() << std::endl;
-            sansara.writeerr(e.what());
-            
-        } catch (const std::exception& e) {
-            std::cerr << "Ошибка: " << e.what() << std::endl;
-            sansara.writeerr(e.what());
-            exit(1);
+            logger.writeerr(e.what());
         }
 
+        server startconnect;
+        startconnect.connection(port, data_base, &logger);
 
-
-       server startconnect;
-      startconnect.connection(port, data_base, &sansara);
-        
-        
     } catch (const criticalerr& e) {
         std::cerr << e.what() << std::endl;
-        sansara.writeerr(e.what());
-        exit(1);
-    } catch (const std::exception& e) {
-        std::cerr << "Ошибка: " << e.what() << std::endl;
-        sansara.writeerr(e.what());
+        logger.writeerr(e.what());
         exit(1);
     }
 }
