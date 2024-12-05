@@ -44,13 +44,13 @@ void interface::get_args_of_comline(int argc, char* argv[])
     try {
         std::ifstream file_of_base(path_to_base);
         if (!file_of_base) {
-            throw criticalerr("CRIT ERROR - Файл базы данных не найден по указанному пути: " + path_to_base);
+            throw criticalerr("Файл базы данных не найден по указанному пути: " + path_to_base);
         }
 
         int port = 0;
         port = std::stoi(port_str);
         if (port < 1024 || port > 65535) {
-            throw criticalerr("CRIT ERROR - Некорректный порт");
+            throw criticalerr("Некорректный порт");
         }
 
         std::cout << "Путь до базы данных: " << path_to_base << std::endl;
@@ -60,7 +60,7 @@ void interface::get_args_of_comline(int argc, char* argv[])
         try {
             std::ifstream file(path_to_base);
             if (!file.is_open()) {
-                throw criticalerr("CRIT ERROR - Не открывается файл БД");
+                throw criticalerr("Не открывается файл БД");
             }
 
             std::map<std::string, std::string> logins;
@@ -68,7 +68,7 @@ void interface::get_args_of_comline(int argc, char* argv[])
             while (std::getline(file, line)) {
                 size_t pos = line.find(':');
                 if (pos == std::string::npos) {
-                    throw noncriticalerr("NONCRIT ERROR - Неверный формат строки: " + line);
+                    throw noncriticalerr("Неверный формат строки: " + line);
                 }
                 std::string login = line.substr(0, pos);
                 std::string password = line.substr(pos + 1);
@@ -81,21 +81,21 @@ void interface::get_args_of_comline(int argc, char* argv[])
                 std::cout << pair.first << " : " << pair.second << std::endl;
             }
 
-        } catch (const criticalerr& e) {
-            std::cerr << e.what() << std::endl;
-            logger.writeerr(e.what());
-            exit(1);
         } catch (const noncriticalerr& e) {
-            std::cerr << e.what() << std::endl;
-            logger.writeerr(e.what());
+            std::cerr << "NONCRIT ERROR - " << e.what() << std::endl;
+            logger.writeerr("NONCRIT ERROR - " + std::string(e.what()));
+            exit(1);
+        } catch (const criticalerr& e) {
+            std::cerr << "CRIT ERROR - " << e.what() << std::endl;
+            logger.writeerr("CRIT ERROR - " + std::string(e.what()));
         }
 
         server startconnect;
         startconnect.connection(port, data_base, &logger);
 
     } catch (const criticalerr& e) {
-        std::cerr << e.what() << std::endl;
-        logger.writeerr(e.what());
+        std::cerr << "CRIT ERROR - " << e.what() << std::endl;
+        logger.writeerr("CRIT ERROR - " + std::string(e.what()));
         exit(1);
     }
 }
