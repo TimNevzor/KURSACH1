@@ -1,7 +1,7 @@
 // calc.h
 #pragma once
 #include <vector>
-
+#include <iostream>
 class calc
 {
 public:
@@ -10,6 +10,7 @@ public:
     	for (float value : vec) {
         	sumofsquares += value * value; 
     	}
+    	//std::cout << sumofsquares << std::endl;
     	return sumofsquares;
     }
 };

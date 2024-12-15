@@ -1,6 +1,6 @@
 Для сервера:
 
-g++ -o m main.cpp interface.cpp server.cpp -pthread -lboost_program_options -lcryptopp
+make
 ./m
 
 Для клиента:
@@ -19,3 +19,11 @@ chmod u+x ./client_float
 ./m -b [путь до БД] -l [путь до лог-файла] -p [порт]
 
 ./m -h      <-(вызов справки)
+
+Запуск нескольких (пяти) клиентов:
+
+./client_float -H SHA256 -S c & ./client_float -H SHA256 -S c & ./client_float -H SHA256 -S c & ./client_float -H SHA256 -S c & ./client_float -H SHA256 -S c
+
+Полная запись запуска сервера:
+
+(g++ -o m main.cpp interface.cpp server.cpp -pthread -lboost_program_options -lcryptopp)

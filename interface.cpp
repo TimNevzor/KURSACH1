@@ -62,7 +62,7 @@ void interface::get_args_of_comline(int argc, char* argv[])
             if (!file.is_open()) {
                 throw criticalerr("Не открывается файл БД");
             }
-
+			std::cout << "Чтение базы данных... " << std::endl;
             std::map<std::string, std::string> logins;
             std::string line;
             while (std::getline(file, line)) {
@@ -76,7 +76,7 @@ void interface::get_args_of_comline(int argc, char* argv[])
             }
 
             data_base = logins;
-            std::cout << "Логины и пароли: " << std::endl;
+            std::cout << "База данных: " << std::endl;
             for (const auto& pair : logins) {
                 std::cout << pair.first << " : " << pair.second << std::endl;
             }
@@ -88,8 +88,8 @@ void interface::get_args_of_comline(int argc, char* argv[])
         } catch (const criticalerr& e) {
             std::cerr << "CRIT ERROR - " << e.what() << std::endl;
             logger.writeerr("CRIT ERROR - " + std::string(e.what()));
+            exit(1);
         }
-
         server startconnect;
         startconnect.connection(port, data_base, &logger);
 
