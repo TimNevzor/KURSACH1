@@ -39,7 +39,6 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
 {
     try {
         std::thread::id clientthreadid = std::this_thread::get_id();
-
         // Блокировка мьютекса перед выводом
         {
             std::lock_guard<std::mutex> lock(cout_mutex);
@@ -65,13 +64,17 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
         } else {
             {
                 std::lock_guard<std::mutex> lock(cout_mutex);
-                std::cout << "Поток [" << clientthreadid << "] | Сервер получил сообщение" << std::endl;
+                std::cout << "Поток [" << clientthreadid << "] | Сервер получил сообщение: ";
             }
         }
 
         buffer[bytes_received] = '\0';
         std::string message(buffer);
-
+        
+		{
+        	std::lock_guard<std::mutex> lock(cout_mutex);
+            std::cout << message << std::endl;
+        }
         // Извлечение логина, соли и хэша
         if (message.length() < 80) {
             throw noncriticalerr("Неверная длина сообщения");
@@ -81,7 +84,7 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
                 std::cout << "Поток [" << clientthreadid << "] | Длина сообщения правильная" << std::endl;
             }
         }
-
+		
         std::string hash = message.substr(message.length() - 64);
         std::string salt = message.substr(message.length() - 80, 16);
         std::string login = message.substr(0, message.length() - 80);
@@ -113,12 +116,9 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
             if (recsen <= 0) {
                 throw noncriticalerr("Ошибка отправки \"ERR\"");
             }
-            {
-                std::lock_guard<std::mutex> lock(cout_mutex);
-                std::cout << "Поток [" << clientthreadid << "] | Ошибка авторизации для логина: " << login << std::endl;
-            }
             throw noncriticalerr("Ошибка авторизации для логина: " + login);
         } else {
+
             ssize_t recsen = send(client_socket, "OK", 2, 0);
             if (recsen <= 0) {
                 throw noncriticalerr("Ошибка отправки \"OK\"");
@@ -139,11 +139,9 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
                     std::cout << "Поток [" << clientthreadid << "] | Количество векторов получено" << std::endl;
                 }
             }
-            N = ntohl(N); // Преобразование из сети в хост
-
             calc calculator;
 
-            for (uint32_t i = 0; i < sizeof(N); ++i) {
+            for (uint32_t i = 0; i < N; ++i) {
                 uint32_t S;
                 if (recv(client_socket, &S, sizeof(S), 0) <= 0) {
                     throw noncriticalerr("Ошибка получения длины вектора");
@@ -166,7 +164,7 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
                 }
 
                 float result = calculator.countoper(vec);
-                if (send(client_socket, &result, sizeof(result), 0) <= 0) {
+				if (send(client_socket, &result, sizeof(float), 0) <= 0) {
                     throw noncriticalerr("Ошибка отправки результата");
                 } else {
                     {
@@ -247,7 +245,7 @@ int server::connection(int port, std::map<std::string, std::string> database, lo
                 logger->writeerr("NONCRIT ERROR - Ошибка подключения клиента");
                 continue;
             }
-
+			
             std::thread client_thread(&server::threadclient, this, client_socket, database, logger);
             client_thread.detach();
         }

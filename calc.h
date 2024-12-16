@@ -10,7 +10,6 @@ public:
     	for (float value : vec) {
         	sumofsquares += value * value; 
     	}
-    	//std::cout << sumofsquares << std::endl;
     	return sumofsquares;
     }
 };

@@ -32,6 +32,8 @@ void interface::get_args_of_comline(int argc, char* argv[])
 
     if (vm.count("help")) {
         std::cout << desc << std::endl;
+        std::cout << "Пример запуска сервера с ключами: " << std::endl;
+		std::cout << "./m -b [путь до БД] -l [путь до лог-файла] -p [порт]" << std::endl;
         exit(0);
     }
 
