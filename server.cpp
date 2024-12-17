@@ -4,26 +4,14 @@
 #include "error.h"
 #include "log.h"
 #include <iostream>
-#include <vector>
-#include <thread>
-#include <chrono>
 #include <sstream>
-#include <cstdint>
-#include <stdint.h>
-#include <exception>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
+#include <thread>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
 #include <cryptopp/sha.h>
 #include <cryptopp/hex.h>
-#include <cryptopp/base64.h>
-#include <mutex>
 
 #define BUFFER_SIZE 1024
 
@@ -199,14 +187,6 @@ int server::connection(int port, std::map<std::string, std::string> database, lo
             throw criticalerr("Ошибка создания сокета");
         } else {
             std::cout << "Сокет создан" << std::endl;
-        }
-        // Установка опции SO_REUSEADDR
-        int opt = 1;
-        if (setsockopt(server_socket, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0) {
-            close(server_socket);
-            throw criticalerr("Ошибка установки опции SO_REUSEADDR");
-        } else {
-            std::cout << "Опция SO_REUSEADDR установлена" << std::endl;
         }
         if (bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
             close(server_socket);

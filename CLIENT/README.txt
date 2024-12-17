@@ -1,6 +1,11 @@
 Для самописного клиента:
 
 chmod u+x ./client_float
+./client_float
+
+или
+
+make
 ./client_float -H SHA256 -S c
 
 Запуск нескольких (пяти) клиентов:

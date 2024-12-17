@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include "interface.h"
+#include "log.h"
+#include "error.h"
 #include "server.h"
 
 namespace po = boost::program_options;

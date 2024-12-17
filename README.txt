@@ -1,7 +1,7 @@
 Для сервера:
 
 make
-./m
+./main
 
 Для клиента:
 
@@ -16,9 +16,9 @@ chmod u+x ./client_float
 
 Пример запуска сервера с ключами:
 
-./m -b [путь до БД] -l [путь до лог-файла] -p [порт]
+./main -b [путь до БД] -l [путь до лог-файла] -p [порт]
 
-./m -h      <-(вызов справки)
+./main -h      <-(вызов справки)
 
 Запуск нескольких (пяти) клиентов:
 
@@ -26,4 +26,4 @@ chmod u+x ./client_float
 
 Полная запись запуска сервера:
 
-(g++ -o m main.cpp interface.cpp server.cpp log.cpp calc.cpp -pthread -lboost_program_options -lcryptopp)
+(g++ -o main main.cpp interface.cpp log.cpp server.cpp calc.cpp -pthread -lboost_program_options -lcryptopp)

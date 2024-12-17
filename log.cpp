@@ -1,10 +1,6 @@
 //log.cpp
 #include "log.h"
 #include "error.h"
-#include "interface.h"
-#include <system_error>
-#include <stdexcept>
-#include <string>
 #include <fstream>
 #include <sstream>
 #include <iomanip>

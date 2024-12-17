@@ -1,4 +1,4 @@
-target =  m
+target =  main
 sources = main.cpp interface.cpp log.cpp server.cpp calc.cpp
 CC = g++
 LDLIBS = -pthread -lboost_program_options -lcryptopp

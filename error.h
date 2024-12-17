@@ -1,10 +1,7 @@
 //error.h
 #pragma once
-#include <system_error>
 #include <stdexcept>
 #include <string>
-#include "log.h"
-#include "interface.h"
 
 class criticalerr : public std::runtime_error
 {

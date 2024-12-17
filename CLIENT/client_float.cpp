@@ -1,32 +1,19 @@
 //client_float.cpp
 #include <iostream>
-#include <vector>
-#include <cstring>
-#include <cstdlib>
-#include <unistd.h>
-#include <arpa/inet.h>
 #include <string>
+#include <vector>
+#include <mutex>
 #include <random>
 #include <iomanip>
 #include <sstream>
 #include <openssl/sha.h>
 #include <boost/program_options.hpp>
-#include <cstdint>
-#include <stdint.h>
-#include <exception>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
 #include <cryptopp/sha.h>
 #include <cryptopp/hex.h>
-#include <cryptopp/base64.h>
-#include <mutex>
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 33333

@@ -1,7 +1,5 @@
 //calc.cpp
 #include "calc.h"
-#include <vector>
-#include <iostream>
 
 float calc::countoper(const std::vector<float>& vec)
 {
