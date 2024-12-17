@@ -1,4 +1,4 @@
-// server.h
+//server.h
 #pragma once
 #include <string>
 #include <map>
@@ -12,5 +12,5 @@ public:
     void threadclient(int client_socket, std::map<std::string, std::string> base, logtxt* logger);
     std::string sha256(const std::string& message);
 private:
-	std::mutex cout_mutex;
+    std::mutex cout_mutex;
 };

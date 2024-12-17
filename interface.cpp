@@ -33,7 +33,7 @@ void interface::get_args_of_comline(int argc, char* argv[])
     if (vm.count("help")) {
         std::cout << desc << std::endl;
         std::cout << "Пример запуска сервера с ключами: " << std::endl;
-		std::cout << "./m -b [путь до БД] -l [путь до лог-файла] -p [порт]" << std::endl;
+        std::cout << "./m -b [путь до БД] -l [путь до лог-файла] -p [порт]" << std::endl;
         exit(0);
     }
 
@@ -64,7 +64,7 @@ void interface::get_args_of_comline(int argc, char* argv[])
             if (!file.is_open()) {
                 throw criticalerr("Не открывается файл БД");
             }
-			std::cout << "Чтение базы данных... " << std::endl;
+            std::cout << "Чтение базы данных... " << std::endl;
             std::map<std::string, std::string> logins;
             std::string line;
             while (std::getline(file, line)) {

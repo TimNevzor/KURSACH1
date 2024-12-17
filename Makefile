@@ -1,5 +1,5 @@
 target =  m
-sources = main.cpp interface.cpp server.cpp
+sources = main.cpp interface.cpp log.cpp server.cpp calc.cpp
 CC = g++
 LDLIBS = -pthread -lboost_program_options -lcryptopp
 all:build

@@ -26,4 +26,4 @@ chmod u+x ./client_float
 
 Полная запись запуска сервера:
 
-(g++ -o m main.cpp interface.cpp server.cpp -pthread -lboost_program_options -lcryptopp)
+(g++ -o m main.cpp interface.cpp server.cpp log.cpp calc.cpp -pthread -lboost_program_options -lcryptopp)
