@@ -1,23 +1,21 @@
-//log.cpp
 #include "log.h"
-#include "error.h"
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
 #include <ctime>
 
-int logtxt::writeerr(const std::string& error)
+void logtxt::setpath(std::string path) 
 {
-    std::ofstream logfile(pathtologfile, std::ios::app); // Открытие файла в режиме добавления
-    if (!logfile) {
-        throw criticalerr("CRIT ERROR - Не удалось открыть лог-файл: " + pathtologfile);
-    }
+	pathtologfile = path;
+}
 
+void logtxt::writeerr(const std::string& error)
+{
+	std::ofstream logfile(pathtologfile, std::ios::app); 
     auto now = std::time(nullptr);
     auto local_time = std::localtime(&now);
     std::ostringstream time_stream;
     time_stream << std::put_time(local_time, "%Y-%m-%d %H:%M:%S");
     logfile << "[" << time_stream.str() << "] " << error << std::endl;
-
-    return 0;
 }

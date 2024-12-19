@@ -8,7 +8,7 @@ private:
     std::string pathtologfile;
 
 public:
-    logtxt()
+   /* logtxt()
     {
         pathtologfile = " ";
     };
@@ -16,7 +16,7 @@ public:
     logtxt(const std::string& path)
     {
         pathtologfile = path;
-    };
-
-    int writeerr(const std::string& error);
+    };*/
+	void setpath(std::string path);
+    void writeerr(const std::string& error);
 };
