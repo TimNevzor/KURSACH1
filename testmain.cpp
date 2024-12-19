@@ -271,8 +271,8 @@ SUITE(server_tests) {
         server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
         server_addr.sin_port = htons(port);
         int server_socket = socket(AF_INET, SOCK_STREAM, 0);
-        int b = bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
-        std::tie(flag, b, server_addr) = startconnect.listen_socket(port, b, server_socket, server_addr, &logger);      
+        int bindsoc = bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
+        std::tie(flag, bindsoc, server_addr) = startconnect.listen_socket(port, bindsoc, server_socket, server_addr, &logger);      
         CHECK_EQUAL(flag, true);
     }
 }

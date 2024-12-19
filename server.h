@@ -4,13 +4,11 @@
 #include <map>
 #include <mutex>
 #include <tuple>
-#include <iostream>
 #include <sstream>
 #include <thread>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include <unistd.h>
 #include <cryptopp/sha.h>
 #include <cryptopp/hex.h>
 #include "log.h"
