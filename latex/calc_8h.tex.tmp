@@ -1,0 +1,32 @@
+\hypertarget{calc_8h}{}\doxysection{Файл calc.\+h}
+\label{calc_8h}\index{calc.h@{calc.h}}
+
+
+Заголовочный файл для модуля calc.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+Граф включаемых заголовочных файлов для calc.\+h\+:
+% FIG 0
+\doxysubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcalc}{calc}}
+\begin{DoxyCompactList}\small\item\em Прием и обработка вектора чисел типа float. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Заголовочный файл для модуля calc. 
+
+\begin{DoxyAuthor}{Автор}
+Невзоров Т.\+В. 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Версия}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Дата}
+20.\+12.\+2024 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Авторство}
+ИБСТ ПГУ 
+\end{DoxyCopyright}

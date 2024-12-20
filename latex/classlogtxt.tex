@@ -1,0 +1,62 @@
+\hypertarget{classlogtxt}{}\doxysection{Класс logtxt}
+\label{classlogtxt}\index{logtxt@{logtxt}}
+
+
+Прием и запись ошибок в лог-\/файл  
+
+
+
+
+{\ttfamily \#include $<$log.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classlogtxt_a5a922c4fe61bb8f18899f0491243955f}{setpath}} (std\+::string path)
+\begin{DoxyCompactList}\small\item\em Установка пути до лог-\/файла \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogtxt_ab6750f160c01414c889df2548faae031}{writeerr}} (const std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Запись ошибки в лог-\/файл \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Прием и запись ошибок в лог-\/файл 
+
+В private секцию устанавливается путь до лог-\/файла 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classlogtxt_a5a922c4fe61bb8f18899f0491243955f}\label{classlogtxt_a5a922c4fe61bb8f18899f0491243955f}} 
+\index{logtxt@{logtxt}!setpath@{setpath}}
+\index{setpath@{setpath}!logtxt@{logtxt}}
+\doxysubsubsection{\texorpdfstring{setpath()}{setpath()}}
+{\footnotesize\ttfamily void logtxt\+::setpath (\begin{DoxyParamCaption}\item[{std\+::string}]{path }\end{DoxyParamCaption})}
+
+
+
+Установка пути до лог-\/файла 
+
+Устанавливает путь до лог-\/файла 
+\begin{DoxyParams}{Аргументы}
+{\em path} & Строка, представляющая собой путь до лог-\/файла \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classlogtxt_ab6750f160c01414c889df2548faae031}\label{classlogtxt_ab6750f160c01414c889df2548faae031}} 
+\index{logtxt@{logtxt}!writeerr@{writeerr}}
+\index{writeerr@{writeerr}!logtxt@{logtxt}}
+\doxysubsubsection{\texorpdfstring{writeerr()}{writeerr()}}
+{\footnotesize\ttfamily void logtxt\+::writeerr (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Запись ошибки в лог-\/файл 
+
+Вычисляет дату и время происхождения ошибки, форматирует их и записывает вместе с ошбкой в лог-\/файл 
+\begin{DoxyParams}{Аргументы}
+{\em error} & Константная ссылка на строку, представляющая собой ошибку \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{log_8h}{log.\+h}}\item 
+log.\+cpp\end{DoxyCompactItemize}

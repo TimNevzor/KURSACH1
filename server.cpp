@@ -38,40 +38,38 @@ std::tuple<bool, int, sockaddr_in> server::create_socket(int port, logtxt* logge
     }
 }
 
-std::tuple<bool, int, sockaddr_in> server::bind_socket(int server_socket, sockaddr_in server_addr, logtxt* logger)
+std::tuple<bool, sockaddr_in> server::bind_socket(int server_socket, sockaddr_in server_addr, logtxt* logger)
 {
 	try{  
-        int b = bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
-        if (b < 0) {
+        if (bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
             close(server_socket);
             throw criticalerr("Ошибка привязки сокета");
         } else {
             std::cout << "Сокет привязан" << std::endl;
         }
-        return std::make_tuple(true, b, server_addr);
+        return std::make_tuple(true, server_addr);
         
 	} catch  (const criticalerr& e) {
         if (logger) logger->writeerr("CRIT ERROR - " + std::string(e.what()));
         std::cerr << "CRIT ERROR - " << e.what() << std::endl;
-        return std::make_tuple(false, -1, sockaddr_in());
+        return std::make_tuple(false, sockaddr_in());
     } 
 } 
 
-std::tuple<bool, int, sockaddr_in> server::listen_socket(int port, int b, int server_socket, sockaddr_in server_addr, logtxt* logger)
+std::tuple<bool, sockaddr_in> server::listen_socket(int port, int server_socket, sockaddr_in server_addr, logtxt* logger)
 { try{
-	b = listen(server_socket, 2);
-        if (b < 0) {
+        if (listen(server_socket, 2) < 0) {
             close(server_socket);
             throw criticalerr("Ошибка прослушивания");
         } else {
             std::cout << "Сокет прослушивается" << std::endl;
         }
         std::cout << "Сервер запущен на 127.0.0.1:" << port << "..." << std::endl;
-        return std::make_tuple(true, b, server_addr);
+        return std::make_tuple(true, server_addr);
 	} catch  (const criticalerr& e) {
         if (logger) logger->writeerr("CRIT ERROR - " + std::string(e.what()));
         std::cerr << "CRIT ERROR - " << e.what() << std::endl;
-        return std::make_tuple(false, -1, sockaddr_in());
+        return std::make_tuple(false, sockaddr_in());
     }
 }
 
@@ -95,7 +93,7 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
         }
         // Запуск таймера отключения
         std::thread disconnect_timer([client_socket, clientthreadid, this]() {
-            int timeinsec = 15;
+            int timeinsec = 30;
             std::this_thread::sleep_for(std::chrono::seconds(timeinsec));
             {
                 std::lock_guard<std::mutex> lock(cout_mutex);
@@ -222,17 +220,7 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
         }
         close(client_socket);
         return;
-    } catch (const criticalerr& e) {
-        std::ostringstream oss;
-        oss << "Поток [" << std::this_thread::get_id() << "] | " << "CRIT ERROR - " << e.what();
-        logger->writeerr(oss.str());
-        {
-            std::lock_guard<std::mutex> lock(cout_mutex);
-            std::cerr << oss.str() << std::endl;
-        }
-        close(client_socket);
-        return;
-    }
+    } 
 }
 
 int server::connection(int port, std::map<std::string, std::string> database, logtxt* logger)
@@ -247,14 +235,13 @@ int server::connection(int port, std::map<std::string, std::string> database, lo
         }
         
         bool fbs;
-        int b;
-        std::tie(fbs, b, server_addr) = bind_socket(server_socket, server_addr, logger);
+        std::tie(fbs, server_addr) = bind_socket(server_socket, server_addr, logger);
         if (fbs == false) {
         	exit(1);
         }
         
         bool fls;
-        std::tie(fls, b, server_addr) = listen_socket(port, b, server_socket, server_addr, logger);
+        std::tie(fls, server_addr) = listen_socket(port, server_socket, server_addr, logger);
         if (fls == false) {
         	exit(1);
         }
@@ -273,10 +260,6 @@ int server::connection(int port, std::map<std::string, std::string> database, lo
     } catch (const noncriticalerr& e) {
         logger->writeerr("NONCRIT ERROR - " + std::string(e.what()));
         std::cerr << "NONCRIT ERROR - " << e.what() << std::endl;
-        return -1;
-    } catch (const criticalerr& e) {
-        logger->writeerr("CRIT ERROR - " + std::string(e.what()));
-        std::cerr << "CRIT ERROR - " << e.what() << std::endl;
         return -1;
     }
     return 0;

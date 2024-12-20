@@ -1,0 +1,190 @@
+\hypertarget{classserver}{}\doxysection{Класс server}
+\label{classserver}\index{server@{server}}
+
+
+Создание соединения для работы с клиентом  
+
+
+
+
+{\ttfamily \#include $<$server.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classserver_a4ad8936d454b505d61814cc744fc4205}{connection}} (int port, std\+::map$<$ std\+::string, std\+::string $>$ base, \mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em Основной метод, порождающий другие методы \end{DoxyCompactList}\item 
+std\+::tuple$<$ bool, int, sockaddr\+\_\+in $>$ \mbox{\hyperlink{classserver_a859950902ae4584c7d101251af54f006}{create\+\_\+socket}} (int port, \mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em Создание сокета ~\newline
+ \end{DoxyCompactList}\item 
+std\+::tuple$<$ bool, sockaddr\+\_\+in $>$ \mbox{\hyperlink{classserver_a01fd0f9ebda83850fe0f8c59a4027bb2}{bind\+\_\+socket}} (int server\+\_\+socket, sockaddr\+\_\+in server\+\_\+addr, \mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em Привязка сокета ~\newline
+ \end{DoxyCompactList}\item 
+std\+::tuple$<$ bool, sockaddr\+\_\+in $>$ \mbox{\hyperlink{classserver_a56378164f3866f479a383705172282df}{listen\+\_\+socket}} (int port, int server\+\_\+socket, sockaddr\+\_\+in server\+\_\+addr, \mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em Прослушивание сокета ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classserver_abc2955d91ce0c9251be9bc128562f746}{threadclient}} (int client\+\_\+socket, std\+::map$<$ std\+::string, std\+::string $>$ base, \mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em Метод, отвечающий за взаимодействие с клиентом ~\newline
+ \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classserver_aade70cbc2f8d5c1554e27e19a038b99c}{sha256}} (const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Хеширование пароля ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Создание соединения для работы с клиентом 
+
+Создает сокет для взимодействия с клиентом В private секции находится объект cout\+\_\+mutex типа mutex 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classserver_a01fd0f9ebda83850fe0f8c59a4027bb2}\label{classserver_a01fd0f9ebda83850fe0f8c59a4027bb2}} 
+\index{server@{server}!bind\_socket@{bind\_socket}}
+\index{bind\_socket@{bind\_socket}!server@{server}}
+\doxysubsubsection{\texorpdfstring{bind\_socket()}{bind\_socket()}}
+{\footnotesize\ttfamily std\+::tuple$<$ bool, sockaddr\+\_\+in $>$ server\+::bind\+\_\+socket (\begin{DoxyParamCaption}\item[{int}]{server\+\_\+socket,  }\item[{sockaddr\+\_\+in}]{server\+\_\+addr,  }\item[{\mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$}]{logger }\end{DoxyParamCaption})}
+
+
+
+Привязка сокета ~\newline
+ 
+
+Привязывает сокет к адресу и порту, на которых он будет работать 
+\begin{DoxyParams}{Аргументы}
+{\em server\+\_\+socket} & Дескриптор сокета, использующийся для прослушивания входящих соединений \\
+\hline
+{\em server\+\_\+addr} & Адрес сокета \\
+\hline
+{\em logger} & Указатель на объект класса logtxt, необходимый для записи ошибок в лог-\/файл ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em criticalerr} & при ошибке привязки сокета \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classserver_a4ad8936d454b505d61814cc744fc4205}\label{classserver_a4ad8936d454b505d61814cc744fc4205}} 
+\index{server@{server}!connection@{connection}}
+\index{connection@{connection}!server@{server}}
+\doxysubsubsection{\texorpdfstring{connection()}{connection()}}
+{\footnotesize\ttfamily int server\+::connection (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{std\+::map$<$ std\+::string, std\+::string $>$}]{base,  }\item[{\mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$}]{logger }\end{DoxyParamCaption})}
+
+
+
+Основной метод, порождающий другие методы 
+
+Принимает параметры, которые будут передаваться другим методам, порождает методы по созданию, привязке и прослушиванию сокета. Запускает цикл, в котором принимает клиентов. 
+\begin{DoxyParams}{Аргументы}
+{\em port} & Порт, на котором будет запускаться сервер \\
+\hline
+{\em base} & Ассоциативный массив с логинами и паролями \\
+\hline
+{\em logger} & Указатель на объект класса logtxt, необходимый для записи ошибок в лог-\/файл ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em noncriticalerr} & при ошибке подкдючения клиента \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classserver_a859950902ae4584c7d101251af54f006}\label{classserver_a859950902ae4584c7d101251af54f006}} 
+\index{server@{server}!create\_socket@{create\_socket}}
+\index{create\_socket@{create\_socket}!server@{server}}
+\doxysubsubsection{\texorpdfstring{create\_socket()}{create\_socket()}}
+{\footnotesize\ttfamily std\+::tuple$<$ bool, int, sockaddr\+\_\+in $>$ server\+::create\+\_\+socket (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{\mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$}]{logger }\end{DoxyParamCaption})}
+
+
+
+Создание сокета ~\newline
+ 
+
+Создает сокет, который в дальнейшем будет использоваться для работы с клиентом 
+\begin{DoxyParams}{Аргументы}
+{\em port} & Порт, на котором будет запускаться сервер \\
+\hline
+{\em logger} & Указатель на объект класса logtxt, необходимый для записи ошибок в лог-\/файл ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em criticalerr} & при ошибке создания сокета \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classserver_a56378164f3866f479a383705172282df}\label{classserver_a56378164f3866f479a383705172282df}} 
+\index{server@{server}!listen\_socket@{listen\_socket}}
+\index{listen\_socket@{listen\_socket}!server@{server}}
+\doxysubsubsection{\texorpdfstring{listen\_socket()}{listen\_socket()}}
+{\footnotesize\ttfamily std\+::tuple$<$ bool, sockaddr\+\_\+in $>$ server\+::listen\+\_\+socket (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{int}]{server\+\_\+socket,  }\item[{sockaddr\+\_\+in}]{server\+\_\+addr,  }\item[{\mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$}]{logger }\end{DoxyParamCaption})}
+
+
+
+Прослушивание сокета ~\newline
+ 
+
+Прослушивает сервер 
+\begin{DoxyParams}{Аргументы}
+{\em port} & Порт, на котором запускается сервер \\
+\hline
+{\em server\+\_\+socket} & Дескриптор сокета, использующийся для прослушивания входящих соединений \\
+\hline
+{\em server\+\_\+addr} & Адрес сокета \\
+\hline
+{\em logger} & Указатель на объект класса logtxt, необходимый для записи ошибок в лог-\/файл \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em criticalerr} & при ошибке прослушивания сокета \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classserver_aade70cbc2f8d5c1554e27e19a038b99c}\label{classserver_aade70cbc2f8d5c1554e27e19a038b99c}} 
+\index{server@{server}!sha256@{sha256}}
+\index{sha256@{sha256}!server@{server}}
+\doxysubsubsection{\texorpdfstring{sha256()}{sha256()}}
+{\footnotesize\ttfamily std\+::string server\+::sha256 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})}
+
+
+
+Хеширование пароля ~\newline
+ 
+
+Хэширует строку, содержащую соль и пароль 
+\begin{DoxyParams}{Аргументы}
+{\em message} & Константная ссылка на строку, содержащую сообщение из соли и пароля \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classserver_abc2955d91ce0c9251be9bc128562f746}\label{classserver_abc2955d91ce0c9251be9bc128562f746}} 
+\index{server@{server}!threadclient@{threadclient}}
+\index{threadclient@{threadclient}!server@{server}}
+\doxysubsubsection{\texorpdfstring{threadclient()}{threadclient()}}
+{\footnotesize\ttfamily void server\+::threadclient (\begin{DoxyParamCaption}\item[{int}]{client\+\_\+socket,  }\item[{std\+::map$<$ std\+::string, std\+::string $>$}]{base,  }\item[{\mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$}]{logger }\end{DoxyParamCaption})}
+
+
+
+Метод, отвечающий за взаимодействие с клиентом ~\newline
+ 
+
+Данный метод выполняет следующие действия\+: принимает от клиента строку, содержащую логин, соль и хэш; передает соль и пароль из базы данных в метод хэшироавния; сравнивает захэшированный пароль с хэшем от клиента; получает количество, длину и содержимое векторов; порождает объект calculator класса calc и передает ему векторы; отправляет клиенту посчитанный результат. После 30 секунд метод закрывает сокет ~\newline
+ 
+\begin{DoxyParams}{Аргументы}
+{\em client\+\_\+socket} & Дескриптор сокета, представляющий собой соединение с конкретным клиентом \\
+\hline
+{\em base} & Ассоциативный массив с логинами и паролями \\
+\hline
+{\em logger} & Указатель на объект класса logtxt, необходимый для записи ошибок в лог-\/файл ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em noncriticalerr} & при следующих ошибках\+: Ошибка получения сообщения от клиента; Неверная длина сообщения; Ошибка отправки \char`\"{}\+ERR\char`\"{} при неизвестном логине; Неизвестный логин; Ошибка отправки \char`\"{}\+ERR\char`\"{} при ошибке авторизации; Ошибка авторизации для логина; Ошибка отправки \char`\"{}\+OK\char`\"{}; Ошибка получения количества векторов; Ошибка получения длины n-\/го вектора; Ошибка получения n-\/го вектора; Ошибка отправки n-\/го результата \\
+\hline
+\end{DoxyExceptions}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{server_8h}{server.\+h}}\item 
+server.\+cpp\end{DoxyCompactItemize}

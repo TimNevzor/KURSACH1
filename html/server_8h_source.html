@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Курсовая работа: Исходный файл server.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Курсовая работа
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Курсовая работа по разработке клиент-серверных приложений с подсистемой аутентификации</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">server.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="server_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;arpa/inet.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;netinet/in.h&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;sys/socket.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;cryptopp/sha.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;cryptopp/hex.h&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="log_8h.html">log.h</a>&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classserver.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classserver.html">server</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classserver.html#a4ad8936d454b505d61814cc744fc4205">connection</a>(<span class="keywordtype">int</span> port, std::map&lt;std::string, std::string&gt; base, <a class="code" href="classlogtxt.html">logtxt</a>* logger);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::tuple&lt;bool, int, sockaddr_in&gt; <a class="code" href="classserver.html#a859950902ae4584c7d101251af54f006">create_socket</a>(<span class="keywordtype">int</span> port, <a class="code" href="classlogtxt.html">logtxt</a>* logger);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::tuple&lt;bool, sockaddr_in&gt; <a class="code" href="classserver.html#a01fd0f9ebda83850fe0f8c59a4027bb2">bind_socket</a>(<span class="keywordtype">int</span> server_socket, sockaddr_in server_addr, <a class="code" href="classlogtxt.html">logtxt</a>* logger);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::tuple&lt;bool, sockaddr_in&gt; <a class="code" href="classserver.html#a56378164f3866f479a383705172282df">listen_socket</a>(<span class="keywordtype">int</span> port, <span class="keywordtype">int</span> server_socket, sockaddr_in server_addr, <a class="code" href="classlogtxt.html">logtxt</a>* logger);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classserver.html#abc2955d91ce0c9251be9bc128562f746">threadclient</a>(<span class="keywordtype">int</span> client_socket, std::map&lt;std::string, std::string&gt; base, <a class="code" href="classlogtxt.html">logtxt</a>* logger);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    std::string <a class="code" href="classserver.html#aade70cbc2f8d5c1554e27e19a038b99c">sha256</a>(<span class="keyword">const</span> std::string&amp; message);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    std::mutex cout_mutex; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div>
+<div class="ttc" id="aclasslogtxt_html"><div class="ttname"><a href="classlogtxt.html">logtxt</a></div><div class="ttdoc">Прием и запись ошибок в лог-файл</div><div class="ttdef"><b>Definition:</b> log.h:14</div></div>
+<div class="ttc" id="aclassserver_html"><div class="ttname"><a href="classserver.html">server</a></div><div class="ttdoc">Создание соединения для работы с клиентом</div><div class="ttdef"><b>Definition:</b> server.h:26</div></div>
+<div class="ttc" id="aclassserver_html_a01fd0f9ebda83850fe0f8c59a4027bb2"><div class="ttname"><a href="classserver.html#a01fd0f9ebda83850fe0f8c59a4027bb2">server::bind_socket</a></div><div class="ttdeci">std::tuple&lt; bool, sockaddr_in &gt; bind_socket(int server_socket, sockaddr_in server_addr, logtxt *logger)</div><div class="ttdoc">Привязка сокета</div><div class="ttdef"><b>Definition:</b> server.cpp:41</div></div>
+<div class="ttc" id="aclassserver_html_a4ad8936d454b505d61814cc744fc4205"><div class="ttname"><a href="classserver.html#a4ad8936d454b505d61814cc744fc4205">server::connection</a></div><div class="ttdeci">int connection(int port, std::map&lt; std::string, std::string &gt; base, logtxt *logger)</div><div class="ttdoc">Основной метод, порождающий другие методы</div><div class="ttdef"><b>Definition:</b> server.cpp:226</div></div>
+<div class="ttc" id="aclassserver_html_a56378164f3866f479a383705172282df"><div class="ttname"><a href="classserver.html#a56378164f3866f479a383705172282df">server::listen_socket</a></div><div class="ttdeci">std::tuple&lt; bool, sockaddr_in &gt; listen_socket(int port, int server_socket, sockaddr_in server_addr, logtxt *logger)</div><div class="ttdoc">Прослушивание сокета</div><div class="ttdef"><b>Definition:</b> server.cpp:59</div></div>
+<div class="ttc" id="aclassserver_html_a859950902ae4584c7d101251af54f006"><div class="ttname"><a href="classserver.html#a859950902ae4584c7d101251af54f006">server::create_socket</a></div><div class="ttdeci">std::tuple&lt; bool, int, sockaddr_in &gt; create_socket(int port, logtxt *logger)</div><div class="ttdoc">Создание сокета</div><div class="ttdef"><b>Definition:</b> server.cpp:18</div></div>
+<div class="ttc" id="aclassserver_html_aade70cbc2f8d5c1554e27e19a038b99c"><div class="ttname"><a href="classserver.html#aade70cbc2f8d5c1554e27e19a038b99c">server::sha256</a></div><div class="ttdeci">std::string sha256(const std::string &amp;message)</div><div class="ttdoc">Хеширование пароля</div><div class="ttdef"><b>Definition:</b> server.cpp:76</div></div>
+<div class="ttc" id="aclassserver_html_abc2955d91ce0c9251be9bc128562f746"><div class="ttname"><a href="classserver.html#abc2955d91ce0c9251be9bc128562f746">server::threadclient</a></div><div class="ttdeci">void threadclient(int client_socket, std::map&lt; std::string, std::string &gt; base, logtxt *logger)</div><div class="ttdoc">Метод, отвечающий за взаимодействие с клиентом</div><div class="ttdef"><b>Definition:</b> server.cpp:85</div></div>
+<div class="ttc" id="alog_8h_html"><div class="ttname"><a href="log_8h.html">log.h</a></div><div class="ttdoc">Заголовочный файл для модуля log.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -10,12 +10,13 @@ chmod u+x ./client_float
 
 Для запуска юнит-тестов:
 
-g++ -std=c++17 -o testmain testmain.cpp interface.cpp log.cpp server.cpp calc.cpp -pthread -lboost_program_options -lcryptopp -lUnitTest++
+make test
+./testmain
 
-Пути по умолчанию:
+Значения по умолчанию:
 
-До лог-файла: = log.txt
-До БД: base.txt
+Путь до лог-файла: = log.txt
+Путь до БД: base.txt
 Порт по умолчанию: 33333
 
 Пример запуска сервера с ключами:
@@ -26,8 +27,6 @@ g++ -std=c++17 -o testmain testmain.cpp interface.cpp log.cpp server.cpp calc.cp
 
 Запуск нескольких (пяти) клиентов:
 
+for i in {1..5}; do ./client_float -H SHA256 -S c & done
+
 ./client_float -H SHA256 -S c & ./client_float -H SHA256 -S c & ./client_float -H SHA256 -S c & ./client_float -H SHA256 -S c & ./client_float -H SHA256 -S c
-
-Полная запись запуска сервера:
-
-(g++ -o main main.cpp interface.cpp log.cpp server.cpp calc.cpp -pthread -lboost_program_options -lcryptopp)

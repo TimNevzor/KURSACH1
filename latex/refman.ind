@@ -1,0 +1,87 @@
+\begin{theindex}
+
+  \item {bind\_socket}
+    \subitem {server}, \hyperpage{14}
+
+  \indexspace
+
+  \item {calc}, \hyperpage{7}
+    \subitem {countoper}, \hyperpage{7}
+  \item {calc.h}, \hyperpage{19}
+  \item {check\_args}
+    \subitem {interface}, \hyperpage{9}
+  \item {check\_path\_to\_database\_and\_get\_database}
+    \subitem {interface}, \hyperpage{10}
+  \item {check\_path\_to\_logfile}
+    \subitem {interface}, \hyperpage{10}
+  \item {check\_port}
+    \subitem {interface}, \hyperpage{11}
+  \item {connection}
+    \subitem {server}, \hyperpage{15}
+  \item {countoper}
+    \subitem {calc}, \hyperpage{7}
+  \item {create\_socket}
+    \subitem {server}, \hyperpage{15}
+  \item {criticalerr}, \hyperpage{8}
+    \subitem {criticalerr}, \hyperpage{8}
+
+  \indexspace
+
+  \item {error.h}, \hyperpage{19}
+
+  \indexspace
+
+  \item {get\_args\_of\_comline}
+    \subitem {interface}, \hyperpage{11}
+
+  \indexspace
+
+  \item {interface}, \hyperpage{9}
+    \subitem {check\_args}, \hyperpage{9}
+    \subitem {check\_path\_to\_database\_and\_get\_database}, 
+		\hyperpage{10}
+    \subitem {check\_path\_to\_logfile}, \hyperpage{10}
+    \subitem {check\_port}, \hyperpage{11}
+    \subitem {get\_args\_of\_comline}, \hyperpage{11}
+  \item {interface.h}, \hyperpage{20}
+
+  \indexspace
+
+  \item {listen\_socket}
+    \subitem {server}, \hyperpage{16}
+  \item {log.h}, \hyperpage{20}
+  \item {logtxt}, \hyperpage{12}
+    \subitem {setpath}, \hyperpage{12}
+    \subitem {writeerr}, \hyperpage{12}
+
+  \indexspace
+
+  \item {noncriticalerr}, \hyperpage{13}
+    \subitem {noncriticalerr}, \hyperpage{13}
+
+  \indexspace
+
+  \item {server}, \hyperpage{14}
+    \subitem {bind\_socket}, \hyperpage{14}
+    \subitem {connection}, \hyperpage{15}
+    \subitem {create\_socket}, \hyperpage{15}
+    \subitem {listen\_socket}, \hyperpage{16}
+    \subitem {sha256}, \hyperpage{16}
+    \subitem {threadclient}, \hyperpage{17}
+  \item {server.h}, \hyperpage{21}
+  \item {setpath}
+    \subitem {logtxt}, \hyperpage{12}
+  \item {sha256}
+    \subitem {server}, \hyperpage{16}
+
+  \indexspace
+
+  \item {threadclient}
+    \subitem {server}, \hyperpage{17}
+
+  \indexspace
+
+  \item {writeerr}
+    \subitem {logtxt}, \hyperpage{12}
+
+\end{theindex}

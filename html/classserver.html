@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Курсовая работа: Класс server</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Курсовая работа
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Курсовая работа по разработке клиент-серверных приложений с подсистемой аутентификации</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classserver-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс server</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Создание соединения для работы с клиентом  
+ <a href="classserver.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="server_8h_source.html">server.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a4ad8936d454b505d61814cc744fc4205"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver.html#a4ad8936d454b505d61814cc744fc4205">connection</a> (int port, std::map&lt; std::string, std::string &gt; base, <a class="el" href="classlogtxt.html">logtxt</a> *logger)</td></tr>
+<tr class="memdesc:a4ad8936d454b505d61814cc744fc4205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной метод, порождающий другие методы  <a href="classserver.html#a4ad8936d454b505d61814cc744fc4205">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4ad8936d454b505d61814cc744fc4205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a859950902ae4584c7d101251af54f006"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; bool, int, sockaddr_in &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver.html#a859950902ae4584c7d101251af54f006">create_socket</a> (int port, <a class="el" href="classlogtxt.html">logtxt</a> *logger)</td></tr>
+<tr class="memdesc:a859950902ae4584c7d101251af54f006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создание сокета <br  />
+  <a href="classserver.html#a859950902ae4584c7d101251af54f006">Подробнее...</a><br /></td></tr>
+<tr class="separator:a859950902ae4584c7d101251af54f006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01fd0f9ebda83850fe0f8c59a4027bb2"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; bool, sockaddr_in &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver.html#a01fd0f9ebda83850fe0f8c59a4027bb2">bind_socket</a> (int server_socket, sockaddr_in server_addr, <a class="el" href="classlogtxt.html">logtxt</a> *logger)</td></tr>
+<tr class="memdesc:a01fd0f9ebda83850fe0f8c59a4027bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Привязка сокета <br  />
+  <a href="classserver.html#a01fd0f9ebda83850fe0f8c59a4027bb2">Подробнее...</a><br /></td></tr>
+<tr class="separator:a01fd0f9ebda83850fe0f8c59a4027bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56378164f3866f479a383705172282df"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; bool, sockaddr_in &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver.html#a56378164f3866f479a383705172282df">listen_socket</a> (int port, int server_socket, sockaddr_in server_addr, <a class="el" href="classlogtxt.html">logtxt</a> *logger)</td></tr>
+<tr class="memdesc:a56378164f3866f479a383705172282df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Прослушивание сокета <br  />
+  <a href="classserver.html#a56378164f3866f479a383705172282df">Подробнее...</a><br /></td></tr>
+<tr class="separator:a56378164f3866f479a383705172282df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc2955d91ce0c9251be9bc128562f746"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver.html#abc2955d91ce0c9251be9bc128562f746">threadclient</a> (int client_socket, std::map&lt; std::string, std::string &gt; base, <a class="el" href="classlogtxt.html">logtxt</a> *logger)</td></tr>
+<tr class="memdesc:abc2955d91ce0c9251be9bc128562f746"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод, отвечающий за взаимодействие с клиентом <br  />
+  <a href="classserver.html#abc2955d91ce0c9251be9bc128562f746">Подробнее...</a><br /></td></tr>
+<tr class="separator:abc2955d91ce0c9251be9bc128562f746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aade70cbc2f8d5c1554e27e19a038b99c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classserver.html#aade70cbc2f8d5c1554e27e19a038b99c">sha256</a> (const std::string &amp;message)</td></tr>
+<tr class="memdesc:aade70cbc2f8d5c1554e27e19a038b99c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Хеширование пароля <br  />
+  <a href="classserver.html#aade70cbc2f8d5c1554e27e19a038b99c">Подробнее...</a><br /></td></tr>
+<tr class="separator:aade70cbc2f8d5c1554e27e19a038b99c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Создание соединения для работы с клиентом </p>
+<p>Создает сокет для взимодействия с клиентом В private секции находится объект cout_mutex типа mutex </p>
+</div><h2 class="groupheader">Методы</h2>
+<a id="a01fd0f9ebda83850fe0f8c59a4027bb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01fd0f9ebda83850fe0f8c59a4027bb2">&#9670;&nbsp;</a></span>bind_socket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; bool, sockaddr_in &gt; server::bind_socket </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>server_socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sockaddr_in&#160;</td>
+          <td class="paramname"><em>server_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classlogtxt.html">logtxt</a> *&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Привязка сокета <br  />
+ </p>
+<p>Привязывает сокет к адресу и порту, на которых он будет работать </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server_socket</td><td>Дескриптор сокета, использующийся для прослушивания входящих соединений </td></tr>
+    <tr><td class="paramname">server_addr</td><td>Адрес сокета </td></tr>
+    <tr><td class="paramname">logger</td><td>Указатель на объект класса logtxt, необходимый для записи ошибок в лог-файл <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">criticalerr</td><td>при ошибке привязки сокета </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4ad8936d454b505d61814cc744fc4205"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad8936d454b505d61814cc744fc4205">&#9670;&nbsp;</a></span>connection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int server::connection </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, std::string &gt;&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classlogtxt.html">logtxt</a> *&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Основной метод, порождающий другие методы </p>
+<p>Принимает параметры, которые будут передаваться другим методам, порождает методы по созданию, привязке и прослушиванию сокета. Запускает цикл, в котором принимает клиентов. </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>Порт, на котором будет запускаться сервер </td></tr>
+    <tr><td class="paramname">base</td><td>Ассоциативный массив с логинами и паролями </td></tr>
+    <tr><td class="paramname">logger</td><td>Указатель на объект класса logtxt, необходимый для записи ошибок в лог-файл <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">noncriticalerr</td><td>при ошибке подкдючения клиента </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a859950902ae4584c7d101251af54f006"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a859950902ae4584c7d101251af54f006">&#9670;&nbsp;</a></span>create_socket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; bool, int, sockaddr_in &gt; server::create_socket </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classlogtxt.html">logtxt</a> *&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Создание сокета <br  />
+ </p>
+<p>Создает сокет, который в дальнейшем будет использоваться для работы с клиентом </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>Порт, на котором будет запускаться сервер </td></tr>
+    <tr><td class="paramname">logger</td><td>Указатель на объект класса logtxt, необходимый для записи ошибок в лог-файл <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">criticalerr</td><td>при ошибке создания сокета </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a56378164f3866f479a383705172282df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56378164f3866f479a383705172282df">&#9670;&nbsp;</a></span>listen_socket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tuple&lt; bool, sockaddr_in &gt; server::listen_socket </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>server_socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sockaddr_in&#160;</td>
+          <td class="paramname"><em>server_addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classlogtxt.html">logtxt</a> *&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Прослушивание сокета <br  />
+ </p>
+<p>Прослушивает сервер </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>Порт, на котором запускается сервер </td></tr>
+    <tr><td class="paramname">server_socket</td><td>Дескриптор сокета, использующийся для прослушивания входящих соединений </td></tr>
+    <tr><td class="paramname">server_addr</td><td>Адрес сокета </td></tr>
+    <tr><td class="paramname">logger</td><td>Указатель на объект класса logtxt, необходимый для записи ошибок в лог-файл </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">criticalerr</td><td>при ошибке прослушивания сокета </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aade70cbc2f8d5c1554e27e19a038b99c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aade70cbc2f8d5c1554e27e19a038b99c">&#9670;&nbsp;</a></span>sha256()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string server::sha256 </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Хеширование пароля <br  />
+ </p>
+<p>Хэширует строку, содержащую соль и пароль </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Константная ссылка на строку, содержащую сообщение из соли и пароля </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abc2955d91ce0c9251be9bc128562f746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc2955d91ce0c9251be9bc128562f746">&#9670;&nbsp;</a></span>threadclient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void server::threadclient </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>client_socket</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, std::string &gt;&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classlogtxt.html">logtxt</a> *&#160;</td>
+          <td class="paramname"><em>logger</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Метод, отвечающий за взаимодействие с клиентом <br  />
+ </p>
+<p>Данный метод выполняет следующие действия: принимает от клиента строку, содержащую логин, соль и хэш; передает соль и пароль из базы данных в метод хэшироавния; сравнивает захэшированный пароль с хэшем от клиента; получает количество, длину и содержимое векторов; порождает объект calculator класса calc и передает ему векторы; отправляет клиенту посчитанный результат. После 30 секунд метод закрывает сокет <br  />
+ </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client_socket</td><td>Дескриптор сокета, представляющий собой соединение с конкретным клиентом </td></tr>
+    <tr><td class="paramname">base</td><td>Ассоциативный массив с логинами и паролями </td></tr>
+    <tr><td class="paramname">logger</td><td>Указатель на объект класса logtxt, необходимый для записи ошибок в лог-файл <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">noncriticalerr</td><td>при следующих ошибках: Ошибка получения сообщения от клиента; Неверная длина сообщения; Ошибка отправки "ERR" при неизвестном логине; Неизвестный логин; Ошибка отправки "ERR" при ошибке авторизации; Ошибка авторизации для логина; Ошибка отправки "OK"; Ошибка получения количества векторов; Ошибка получения длины n-го вектора; Ошибка получения n-го вектора; Ошибка отправки n-го результата </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li><a class="el" href="server_8h_source.html">server.h</a></li>
+<li>server.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Курсовая работа: Исходный файл error.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Курсовая работа
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Курсовая работа по разработке клиент-серверных приложений с подсистемой аутентификации</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">error.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="error_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classcriticalerr.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classcriticalerr.html">criticalerr</a> : <span class="keyword">public</span> std::runtime_error</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classcriticalerr.html#a7b0942ad9df40b40d0a61e6c5fdd6824">   23</a></span>&#160;    <a class="code" href="classcriticalerr.html#a7b0942ad9df40b40d0a61e6c5fdd6824">criticalerr</a>(<span class="keyword">const</span> std::string&amp; s) : std::runtime_error(s) {}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classnoncriticalerr.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnoncriticalerr.html">noncriticalerr</a> : <span class="keyword">public</span> std::runtime_error</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classnoncriticalerr.html#ae32f4580da753f534ef8bac579cc3d07">   37</a></span>&#160;    <a class="code" href="classnoncriticalerr.html#ae32f4580da753f534ef8bac579cc3d07">noncriticalerr</a>(<span class="keyword">const</span> std::string&amp; s) : std::runtime_error(s) {}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="ttc" id="aclasscriticalerr_html"><div class="ttname"><a href="classcriticalerr.html">criticalerr</a></div><div class="ttdoc">Класс для обработки критических ошибок</div><div class="ttdef"><b>Definition:</b> error.h:17</div></div>
+<div class="ttc" id="aclasscriticalerr_html_a7b0942ad9df40b40d0a61e6c5fdd6824"><div class="ttname"><a href="classcriticalerr.html#a7b0942ad9df40b40d0a61e6c5fdd6824">criticalerr::criticalerr</a></div><div class="ttdeci">criticalerr(const std::string &amp;s)</div><div class="ttdoc">Конструктор, принимающий константную ссылку на строку.</div><div class="ttdef"><b>Definition:</b> error.h:23</div></div>
+<div class="ttc" id="aclassnoncriticalerr_html"><div class="ttname"><a href="classnoncriticalerr.html">noncriticalerr</a></div><div class="ttdoc">Класс для обработки некритических ошибок</div><div class="ttdef"><b>Definition:</b> error.h:31</div></div>
+<div class="ttc" id="aclassnoncriticalerr_html_ae32f4580da753f534ef8bac579cc3d07"><div class="ttname"><a href="classnoncriticalerr.html#ae32f4580da753f534ef8bac579cc3d07">noncriticalerr::noncriticalerr</a></div><div class="ttdeci">noncriticalerr(const std::string &amp;s)</div><div class="ttdoc">Конструктор, принимающий константную ссылку на строку.</div><div class="ttdef"><b>Definition:</b> error.h:37</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

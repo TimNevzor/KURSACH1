@@ -106,11 +106,14 @@ std::tuple<bool, std::map<std::string, std::string> > interface::check_path_to_d
 std::tuple<bool, int> interface::check_port(std::string portstr, logtxt* logger)
 {
     try {
-    	if (portstr == "") {
-    		throw criticalerr("Некорректный пустой порт");
-    	}
         int port;
-        port = std::stoi(portstr);
+    try {
+        port = std::stoi(portstr); 
+    } catch (const std::invalid_argument&) {
+        throw criticalerr("Некорректный ввод порта: не числовое значение");
+    } catch (const std::out_of_range&) {
+        throw criticalerr("Некорректный ввод порта: значение вне диапазона");
+    }
         if (port < 1024 || port > 65535) {
             throw criticalerr("Некорректный порт");
         } else {
@@ -139,19 +142,27 @@ void interface::get_args_of_comline(int argc, const char* argv[])
 		exit(1);
 	}
 	
+	bool fl = check_path_to_logfile(path_to_log);
+	if (fl == false) {
+		exit(1);
+	}
+	
     logtxt logger;
     logger.setpath(path_to_log);
 
     bool fb;
     std::tie(fb, data_base) = check_path_to_database_and_get_database(path_to_base, &logger);
-
+	if (fb == false) {
+		exit(1);
+	}
+	
     bool fp;
     int port;
     std::tie(fp, port) = check_port(port_str, &logger);
+    if (fp == false) {
+		exit(1);
+	}
 
-   // std::cout << "Путь до лог-файла: " << path_to_log << std::endl;
-  //  std::cout << "Путь до базы данных: " << path_to_base << std::endl;
-  //  std::cout << "Порт: " << port << std::endl;
     server startconnect;
     startconnect.connection(port, data_base, &logger);
 }

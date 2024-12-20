@@ -1,11 +1,14 @@
-target =  client_float
-sources = client_float.cpp
-CC = g++
+#компилятор
+CXX = g++
+#флаги и линковка
 LDLIBS = -lssl -lcrypto -lboost_system -lboost_program_options -pthread
-all:build
-build:
-	$(CC) $(sources) -o $(target) $(LDLIBS)
-dbg:
-	$(CC) -g $(sources) -o $(target)DBG
+#исходные файлы
+sources = client_float.cpp
+#исполняемые файлы
+target = client_float
+#правила:
+all: $(target)
+	$(CXX) -o $(target) $(sources) $(LDLIBS)
 clean:
-	rm -f $(target) $(DEBUG_EXEC)
+	rm -f $(target)
+.PHONY: all clean

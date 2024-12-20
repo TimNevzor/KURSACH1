@@ -1,0 +1,143 @@
+\hypertarget{classinterface}{}\doxysection{Класс interface}
+\label{classinterface}\index{interface@{interface}}
+
+
+Прием и обработка аргументов командной строки  
+
+
+
+
+{\ttfamily \#include $<$interface.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classinterface_a056234f62c80fe543ca6d4dd1145a7f7}{get\+\_\+args\+\_\+of\+\_\+comline}} (int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Первичный прием аргументов командной строки \end{DoxyCompactList}\item 
+std\+::tuple$<$ std\+::string, std\+::string, std\+::string, std\+::string $>$ \mbox{\hyperlink{classinterface_a9dc8d38ffe640af0ea1fa1c057ccd99e}{check\+\_\+args}} (int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Проверка аргументов командной строки \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classinterface_a780b056f9165661de57e746319fcc3a1}{check\+\_\+path\+\_\+to\+\_\+logfile}} (std\+::string pathtologfile)
+\begin{DoxyCompactList}\small\item\em Проверка пути до лог-\/файла \end{DoxyCompactList}\item 
+std\+::tuple$<$ bool, std\+::map$<$ std\+::string, std\+::string $>$ $>$ \mbox{\hyperlink{classinterface_a489dbfb4617b65de44731567ace2c50c}{check\+\_\+path\+\_\+to\+\_\+database\+\_\+and\+\_\+get\+\_\+database}} (std\+::string pathtodatabase, \mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em Проверка пути до базы данных и формирование ассоциативного массива \end{DoxyCompactList}\item 
+std\+::tuple$<$ bool, int $>$ \mbox{\hyperlink{classinterface_a22c24c931498e110959dc79fa0ed35e8}{check\+\_\+port}} (std\+::string portstr, \mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em Проверка порта \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Прием и обработка аргументов командной строки 
+
+В private секцию устанавливается ассоциативный массив \char`\"{}логин \+: пароль\char`\"{} Устанавливает порт и пути до лог-\/файла и базы данных. Порождает объекты других классов и передает им параметры Для обработки ключей и их параметров используются отдельные функции 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classinterface_a9dc8d38ffe640af0ea1fa1c057ccd99e}\label{classinterface_a9dc8d38ffe640af0ea1fa1c057ccd99e}} 
+\index{interface@{interface}!check\_args@{check\_args}}
+\index{check\_args@{check\_args}!interface@{interface}}
+\doxysubsubsection{\texorpdfstring{check\_args()}{check\_args()}}
+{\footnotesize\ttfamily std\+::tuple$<$ std\+::string, std\+::string, std\+::string, std\+::string $>$ interface\+::check\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Проверка аргументов командной строки 
+
+Проверяет введенные пользователем флаги и их параметры 
+\begin{DoxyParams}{Аргументы}
+{\em argc} & Количество аргументов командной строки \\
+\hline
+{\em argv} & Массив строк, содержащий аргументы командной строки \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em criticalerr} & при вводе несуществующего ключа или ключа без параметра \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classinterface_a489dbfb4617b65de44731567ace2c50c}\label{classinterface_a489dbfb4617b65de44731567ace2c50c}} 
+\index{interface@{interface}!check\_path\_to\_database\_and\_get\_database@{check\_path\_to\_database\_and\_get\_database}}
+\index{check\_path\_to\_database\_and\_get\_database@{check\_path\_to\_database\_and\_get\_database}!interface@{interface}}
+\doxysubsubsection{\texorpdfstring{check\_path\_to\_database\_and\_get\_database()}{check\_path\_to\_database\_and\_get\_database()}}
+{\footnotesize\ttfamily std\+::tuple$<$ bool, std\+::map$<$ std\+::string, std\+::string $>$ $>$ interface\+::check\+\_\+path\+\_\+to\+\_\+database\+\_\+and\+\_\+get\+\_\+database (\begin{DoxyParamCaption}\item[{std\+::string}]{pathtodatabase,  }\item[{\mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$}]{logger }\end{DoxyParamCaption})}
+
+
+
+Проверка пути до базы данных и формирование ассоциативного массива 
+
+Проверяет существование пути до базы данных и формирует ассоциативный массив из логинов и паролей, устанавливает путь до базы данных 
+\begin{DoxyParams}{Аргументы}
+{\em pathtodatabase} & Путь до базы данных \\
+\hline
+{\em logger} & Указатель на объект класса logtxt, необходимый для записи ошибок в лог-\/файл \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em criticalerr} & при вводе несуществующего пути до базы данных \\
+\hline
+{\em noncriticalerr} & при неверном формате строки \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classinterface_a780b056f9165661de57e746319fcc3a1}\label{classinterface_a780b056f9165661de57e746319fcc3a1}} 
+\index{interface@{interface}!check\_path\_to\_logfile@{check\_path\_to\_logfile}}
+\index{check\_path\_to\_logfile@{check\_path\_to\_logfile}!interface@{interface}}
+\doxysubsubsection{\texorpdfstring{check\_path\_to\_logfile()}{check\_path\_to\_logfile()}}
+{\footnotesize\ttfamily bool interface\+::check\+\_\+path\+\_\+to\+\_\+logfile (\begin{DoxyParamCaption}\item[{std\+::string}]{pathtologfile }\end{DoxyParamCaption})}
+
+
+
+Проверка пути до лог-\/файла 
+
+Проверяет существование лог-\/файла по указанному пути, устанавливает путь до лог-\/файла 
+\begin{DoxyParams}{Аргументы}
+{\em pathtologfile} & Путь до лог-\/файла \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em criticalerr} & при вводе несуществующего пути до лог-\/файла \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classinterface_a22c24c931498e110959dc79fa0ed35e8}\label{classinterface_a22c24c931498e110959dc79fa0ed35e8}} 
+\index{interface@{interface}!check\_port@{check\_port}}
+\index{check\_port@{check\_port}!interface@{interface}}
+\doxysubsubsection{\texorpdfstring{check\_port()}{check\_port()}}
+{\footnotesize\ttfamily std\+::tuple$<$ bool, int $>$ interface\+::check\+\_\+port (\begin{DoxyParamCaption}\item[{std\+::string}]{portstr,  }\item[{\mbox{\hyperlink{classlogtxt}{logtxt}} $\ast$}]{logger }\end{DoxyParamCaption})}
+
+
+
+Проверка порта 
+
+Проверяет введенный пользователем порт на корректность и приводит его к типу int, устанавливает порт 
+\begin{DoxyParams}{Аргументы}
+{\em portstr} & Строка, содержащая порт \\
+\hline
+{\em logger} & Указатель на объект класса logtxt, необходимый для записи ошибок в лог-\/файл \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em criticalerr} & при вводе пустого или некорректного порта \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classinterface_a056234f62c80fe543ca6d4dd1145a7f7}\label{classinterface_a056234f62c80fe543ca6d4dd1145a7f7}} 
+\index{interface@{interface}!get\_args\_of\_comline@{get\_args\_of\_comline}}
+\index{get\_args\_of\_comline@{get\_args\_of\_comline}!interface@{interface}}
+\doxysubsubsection{\texorpdfstring{get\_args\_of\_comline()}{get\_args\_of\_comline()}}
+{\footnotesize\ttfamily void interface\+::get\+\_\+args\+\_\+of\+\_\+comline (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Первичный прием аргументов командной строки 
+
+Порождает все последующие методы и объекты других классов, а именно объект logger класса logtxt, объект startconnect класса server 
+\begin{DoxyParams}{Аргументы}
+{\em argc} & Количество аргументов командной строки \\
+\hline
+{\em argv} & Массив строк, содержащий аргументы командной строки \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{interface_8h}{interface.\+h}}\item 
+interface.\+cpp\end{DoxyCompactItemize}
