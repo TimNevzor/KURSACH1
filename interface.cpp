@@ -32,7 +32,10 @@ std::tuple<std::string, std::string, std::string, std::string> interface::check_
         po::store(po::parse_command_line(argc, argv, desc), vm);
         po::notify(vm);
     } catch (const po::error &ex) {
-        std::cerr << "Ошибка: " << ex.what() << std::endl;
+        std::cerr << "Введен неверный ключ или пропущен параметр" << std::endl;
+        std::cout << desc << std::endl;
+        std::cout << "Пример запуска сервера с ключами: " << std::endl;
+        std::cout << "./main -l [путь до лог-файла] -b [путь до БД] -p [порт]" << std::endl;
         return std::make_tuple("error", "", "", "");
     }
 
@@ -105,17 +108,21 @@ std::tuple<bool, std::map<std::string, std::string> > interface::check_path_to_d
 
 std::tuple<bool, int> interface::check_port(std::string portstr, logtxt* logger)
 {
-    try {
-        int port;
+ try {
+	for (char c : portstr) {
+        if (!isdigit(c)) { 
+            throw criticalerr("Некорректный порт: недопустимое значение"); 
+        }
+    }
+    
+    int port;
     try {
         port = std::stoi(portstr); 
-    } catch (const std::invalid_argument&) {
-        throw criticalerr("Некорректный ввод порта: не числовое значение");
     } catch (const std::out_of_range&) {
-        throw criticalerr("Некорректный ввод порта: значение вне диапазона");
+        throw criticalerr("Некорректный порт: значение вне диапазона");
     }
         if (port < 1024 || port > 65535) {
-            throw criticalerr("Некорректный порт");
+            throw criticalerr("Некорректный порт: значение вне диапазона");
         } else {
             std::cout << "Порт корректен" << std::endl;
             return std::make_tuple(true, port);

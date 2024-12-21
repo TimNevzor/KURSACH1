@@ -21,6 +21,18 @@ SUITE(interface_tests) {
 		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
         CHECK_EQUAL(answer_of_check_args, "ok");
     }
+    //ввод неверного ключа
+	TEST(check_args_invalid_key) {
+        interface start;
+        const char* argv[] = {"main", "-q"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "error");
+    }
 	//ввод ключа -h
 	TEST(check_args_h) {
         interface start;
@@ -57,10 +69,34 @@ SUITE(interface_tests) {
 		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
         CHECK_EQUAL(answer_of_check_args, "ok");
     }
+    //ввод ключа --log с параметром [путь до лог-файла]
+	TEST(check_args_log_logtxt) {
+        interface start;
+        const char* argv[] = {"main", "--log", "log.txt"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "ok");
+    }
 	//ввод ключа -l без параметра
 	TEST(check_args_l) {
         interface start;
         const char* argv[] = {"main", "-l"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "error");
+    }
+    //ввод ключа --log без параметра
+	TEST(check_args_log) {
+        interface start;
+        const char* argv[] = {"main", "--log"};
         int argc = sizeof(argv) / sizeof(argv[0]);
         std::string answer_of_check_args;
 		std::string path_to_log;
@@ -81,10 +117,34 @@ SUITE(interface_tests) {
 		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
         CHECK_EQUAL(answer_of_check_args, "ok");
     }
+    //ввод ключа --base с параметром [путь до базы данных]
+	TEST(check_args_base_basetxt) {
+        interface start;
+        const char* argv[] = {"main", "--base", "base.txt"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "ok");
+    }
 	//ввод ключа -b без параметра
 	TEST(check_args_b) {
         interface start;
         const char* argv[] = {"main", "-b"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "error");
+    }
+    //ввод ключа --base без параметра
+	TEST(check_args_base) {
+        interface start;
+        const char* argv[] = {"main", "--base"};
         int argc = sizeof(argv) / sizeof(argv[0]);
         std::string answer_of_check_args;
 		std::string path_to_log;
@@ -105,10 +165,34 @@ SUITE(interface_tests) {
 		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
         CHECK_EQUAL(answer_of_check_args, "ok");
     }
+    //ввод ключа --port с параметром [порт]
+	TEST(check_args_port_33333) {
+        interface start;
+        const char* argv[] = {"main", "--port", "33333"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "ok");
+    }
 	//ввод ключа -p без параметра
 	TEST(check_args_p) {
         interface start;
         const char* argv[] = {"main", "-p"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "error");
+    }
+    //ввод ключа --port без параметра
+	TEST(check_args_port) {
+        interface start;
+        const char* argv[] = {"main", "--port"};
         int argc = sizeof(argv) / sizeof(argv[0]);
         std::string answer_of_check_args;
 		std::string path_to_log;
@@ -129,10 +213,34 @@ SUITE(interface_tests) {
 		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
         CHECK_EQUAL(answer_of_check_args, "error");
     }
+    //ввод --log --base --port
+	TEST(check_args_all_empty_full) {
+        interface start;
+        const char* argv[] = {"main", "--log", "--base", "--port"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "error");
+    }
     //ввод -l log.txt -b base.txt -p 33333
 	TEST(check_args_all) {
         interface start;
         const char* argv[] = {"main", "-l", "log.txt", "-b", "base.txt", "-p", "33333"};
+        int argc = sizeof(argv) / sizeof(argv[0]);
+        std::string answer_of_check_args;
+		std::string path_to_log;
+		std::string path_to_base;
+		std::string port_str;
+		std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = start.check_args(argc, argv);
+        CHECK_EQUAL(answer_of_check_args, "ok");
+    }
+    //ввод --log log.txt --base base.txt --port 33333
+	TEST(check_args_all_full) {
+        interface start;
+        const char* argv[] = {"main", "--log", "log.txt", "--base", "base.txt", "--port", "33333"};
         int argc = sizeof(argv) / sizeof(argv[0]);
         std::string answer_of_check_args;
 		std::string path_to_log;
@@ -150,7 +258,7 @@ SUITE(interface_tests) {
     //несуществующий путь до лог-файла
     TEST(l_not_exist_path) {
         interface start;
-        std::string pathtologfile = "log1.txt";
+        std::string pathtologfile = "badlog.txt";
         CHECK_EQUAL(start.check_path_to_logfile(pathtologfile), false);
     }
     //хороший путь до базы данных
@@ -169,7 +277,7 @@ SUITE(interface_tests) {
         interface start;
         logtxt logger;
     	logger.setpath("log.txt");
-        std::string pathtobase = "base1.txt";
+        std::string pathtobase = "badbase.txt";
         bool flag;
         std::map<std::string, std::string> data_base;
         std::tie(flag, data_base) = start.check_path_to_database_and_get_database(pathtobase, &logger);
@@ -214,12 +322,67 @@ SUITE(interface_tests) {
         std::tie(flag, port) = start.check_port(portstr, &logger);
         CHECK_EQUAL(flag, false);
     }
-    //плохой порт
-    TEST(p_bad) {
+    //отрицательный порт
+    TEST(p_negative) {
         interface start;
         logtxt logger;
     	logger.setpath("log.txt");
     	std::string portstr = "-1";
+        bool flag;
+        int port;
+        std::tie(flag, port) = start.check_port(portstr, &logger);
+        CHECK_EQUAL(flag, false);
+    }
+    //нечисловой порт
+    TEST(p_not_a_digit) {
+        interface start;
+        logtxt logger;
+    	logger.setpath("log.txt");
+    	std::string portstr = "qwerty";
+        bool flag;
+        int port;
+        std::tie(flag, port) = start.check_port(portstr, &logger);
+        CHECK_EQUAL(flag, false);
+    }
+    //дробный порт
+    TEST(p_float) {
+        interface start;
+        logtxt logger;
+    	logger.setpath("log.txt");
+    	std::string portstr = "33333.5";
+        bool flag;
+        int port;
+        std::tie(flag, port) = start.check_port(portstr, &logger);
+        CHECK_EQUAL(flag, false);
+    }
+    //большой порт
+    TEST(p_big) {
+        interface start;
+        logtxt logger;
+    	logger.setpath("log.txt");
+    	std::string portstr = "2147483648";
+        bool flag;
+        int port;
+        std::tie(flag, port) = start.check_port(portstr, &logger);
+        CHECK_EQUAL(flag, false);
+    }
+    //порт меньше диапазона [1024; 65535]
+    TEST(p_less) {
+        interface start;
+        logtxt logger;
+    	logger.setpath("log.txt");
+    	std::string portstr = "1023";
+        bool flag;
+        int port;
+        std::tie(flag, port) = start.check_port(portstr, &logger);
+        CHECK_EQUAL(flag, false);
+    }
+    //порт больше диапазона [1024; 65535]
+    TEST(p_more) {
+        interface start;
+        logtxt logger;
+    	logger.setpath("log.txt");
+    	std::string portstr = "65536";
         bool flag;
         int port;
         std::tie(flag, port) = start.check_port(portstr, &logger);
