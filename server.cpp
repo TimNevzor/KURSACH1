@@ -22,14 +22,14 @@ std::tuple<bool, int, sockaddr_in> server::create_socket(int port, logtxt* logge
         server_addr.sin_family = AF_INET;
         server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
         server_addr.sin_port = htons(port);
-        
+
         int server_socket = socket(AF_INET, SOCK_STREAM, 0);
         if (server_socket < 0) {
             throw criticalerr("Ошибка создания сокета");
         } else {
             std::cout << "Сокет создан" << std::endl;
         }
-        
+
         return std::make_tuple(true, server_socket, server_addr);
     } catch (const criticalerr& e) {
         if (logger) logger->writeerr("CRIT ERROR - " + std::string(e.what()));
@@ -40,7 +40,7 @@ std::tuple<bool, int, sockaddr_in> server::create_socket(int port, logtxt* logge
 
 std::tuple<bool, sockaddr_in> server::bind_socket(int server_socket, sockaddr_in server_addr, logtxt* logger)
 {
-	try{  
+    try {
         if (bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
             close(server_socket);
             throw criticalerr("Ошибка привязки сокета");
@@ -48,16 +48,17 @@ std::tuple<bool, sockaddr_in> server::bind_socket(int server_socket, sockaddr_in
             std::cout << "Сокет привязан" << std::endl;
         }
         return std::make_tuple(true, server_addr);
-        
-	} catch  (const criticalerr& e) {
+
+    } catch  (const criticalerr& e) {
         if (logger) logger->writeerr("CRIT ERROR - " + std::string(e.what()));
         std::cerr << "CRIT ERROR - " << e.what() << std::endl;
         return std::make_tuple(false, sockaddr_in());
-    } 
-} 
+    }
+}
 
 std::tuple<bool, sockaddr_in> server::listen_socket(int port, int server_socket, sockaddr_in server_addr, logtxt* logger)
-{ try{
+{
+    try {
         if (listen(server_socket, 2) < 0) {
             close(server_socket);
             throw criticalerr("Ошибка прослушивания");
@@ -66,7 +67,7 @@ std::tuple<bool, sockaddr_in> server::listen_socket(int port, int server_socket,
         }
         std::cout << "Сервер запущен на 127.0.0.1:" << port << "..." << std::endl;
         return std::make_tuple(true, server_addr);
-	} catch  (const criticalerr& e) {
+    } catch  (const criticalerr& e) {
         if (logger) logger->writeerr("CRIT ERROR - " + std::string(e.what()));
         std::cerr << "CRIT ERROR - " << e.what() << std::endl;
         return std::make_tuple(false, sockaddr_in());
@@ -220,7 +221,7 @@ void server::threadclient(int client_socket, std::map<std::string, std::string> 
         }
         close(client_socket);
         return;
-    } 
+    }
 }
 
 int server::connection(int port, std::map<std::string, std::string> database, logtxt* logger)
@@ -233,19 +234,19 @@ int server::connection(int port, std::map<std::string, std::string> database, lo
         if (fcs == false) {
             exit(1);
         }
-        
+
         bool fbs;
         std::tie(fbs, server_addr) = bind_socket(server_socket, server_addr, logger);
         if (fbs == false) {
-        	exit(1);
+            exit(1);
         }
-        
+
         bool fls;
         std::tie(fls, server_addr) = listen_socket(port, server_socket, server_addr, logger);
         if (fls == false) {
-        	exit(1);
+            exit(1);
         }
-        
+
         while (true) {
             int client_socket = accept(server_socket, nullptr, nullptr);
             if (client_socket < 0) {
@@ -256,7 +257,7 @@ int server::connection(int port, std::map<std::string, std::string> database, lo
             client_thread.detach();
         }
         close(server_socket);
-        
+
     } catch (const noncriticalerr& e) {
         logger->writeerr("NONCRIT ERROR - " + std::string(e.what()));
         std::cerr << "NONCRIT ERROR - " << e.what() << std::endl;

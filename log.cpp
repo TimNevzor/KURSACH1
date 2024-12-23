@@ -1,3 +1,4 @@
+//log.cpp
 #include "log.h"
 #include <iostream>
 #include <fstream>

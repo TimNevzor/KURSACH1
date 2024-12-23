@@ -13,6 +13,10 @@ chmod u+x ./client_float
 make test
 ./testmain
 
+Для запуска 30 клиентов с помощью bash-скрипта:
+
+./client30.sh
+
 Значения по умолчанию:
 
 Путь до лог-файла: = log.txt

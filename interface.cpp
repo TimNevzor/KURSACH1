@@ -14,13 +14,13 @@ namespace po = boost::program_options;
 
 std::tuple<std::string, std::string, std::string, std::string> interface::check_args(int argc, const char* argv[])
 {
-	std::string default_path_to_log = "log.txt";
-	std::string default_path_to_base = "base.txt";
+    std::string default_path_to_log = "log.txt";
+    std::string default_path_to_base = "base.txt";
     std::string default_port = "33333";
-	
+
     po::options_description desc("Допустимые опции");
     desc.add_options()
-    
+
     ("help,h", "Вызов справки")
     ("log,l", po::value<std::string>()->default_value(default_path_to_log), "Путь до лог-файла")
     ("base,b", po::value<std::string>()->default_value(default_path_to_base), "Путь до базы данных")
@@ -45,13 +45,13 @@ std::tuple<std::string, std::string, std::string, std::string> interface::check_
         std::cout << "./main -l [путь до лог-файла] -b [путь до БД] -p [порт]" << std::endl;
         return std::make_tuple("help", "", "", "");
     }
-    
-	std::string path_to_log = vm["log"].as<std::string>();
+
+    std::string path_to_log = vm["log"].as<std::string>();
     std::string path_to_base = vm["base"].as<std::string>();
     std::string port_str = vm["port"].as<std::string>();
-    
+
     return std::make_tuple("ok", path_to_log, path_to_base, port_str);
-} 
+}
 
 bool interface::check_path_to_logfile(std::string pathtologfile)
 {
@@ -61,7 +61,7 @@ bool interface::check_path_to_logfile(std::string pathtologfile)
         } else {
             std::cout << "Лог-файл по указанному пути существует" << std::endl;
         }
-		return true;
+        return true;
     } catch (const criticalerr& e) {
         std::cerr << "CRIT ERROR - " << e.what() << std::endl;
         return false;
@@ -108,19 +108,18 @@ std::tuple<bool, std::map<std::string, std::string> > interface::check_path_to_d
 
 std::tuple<bool, int> interface::check_port(std::string portstr, logtxt* logger)
 {
- try {
-	for (char c : portstr) {
-        if (!isdigit(c)) { 
-            throw criticalerr("Некорректный порт: недопустимое значение"); 
-        }
-    }
-    
-    int port;
     try {
-        port = std::stoi(portstr); 
-    } catch (const std::out_of_range&) {
-        throw criticalerr("Некорректный порт: значение вне диапазона");
-    }
+        for (char c : portstr) {
+            if (!isdigit(c)) {
+                throw criticalerr("Некорректный порт: недопустимое значение");
+            }
+        }
+        int port;
+        try {
+            port = std::stoi(portstr);
+        } catch (const std::out_of_range&) {
+            throw criticalerr("Некорректный порт: значение вне диапазона");
+        }
         if (port < 1024 || port > 65535) {
             throw criticalerr("Некорректный порт: значение вне диапазона");
         } else {
@@ -135,40 +134,40 @@ std::tuple<bool, int> interface::check_port(std::string portstr, logtxt* logger)
 }
 
 void interface::get_args_of_comline(int argc, const char* argv[])
-{	
-	std::string answer_of_check_args;
-	std::string path_to_log;
-	std::string path_to_base;
-	std::string port_str;
-	std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = check_args(argc, argv);
-	
-	if (answer_of_check_args == "help") {
-		exit(0);
-	}
-	if (answer_of_check_args == "error") {
-		exit(1);
-	}
-	
-	bool fl = check_path_to_logfile(path_to_log);
-	if (fl == false) {
-		exit(1);
-	}
-	
+{
+    std::string answer_of_check_args;
+    std::string path_to_log;
+    std::string path_to_base;
+    std::string port_str;
+    std::tie(answer_of_check_args, path_to_log, path_to_base, port_str) = check_args(argc, argv);
+
+    if (answer_of_check_args == "help") {
+        exit(0);
+    }
+    if (answer_of_check_args == "error") {
+        exit(1);
+    }
+
+    bool fl = check_path_to_logfile(path_to_log);
+    if (fl == false) {
+        exit(1);
+    }
+
     logtxt logger;
     logger.setpath(path_to_log);
 
     bool fb;
     std::tie(fb, data_base) = check_path_to_database_and_get_database(path_to_base, &logger);
-	if (fb == false) {
-		exit(1);
-	}
-	
+    if (fb == false) {
+        exit(1);
+    }
+
     bool fp;
     int port;
     std::tie(fp, port) = check_port(port_str, &logger);
     if (fp == false) {
-		exit(1);
-	}
+        exit(1);
+    }
 
     server startconnect;
     startconnect.connection(port, data_base, &logger);
